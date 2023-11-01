@@ -22,7 +22,7 @@ public class LinearEquationLogic {
             parsePoints(point1, point2);
             LinearEquation function = new LinearEquation(x1, y1, x2, y2);
             pointsInfo(function);
-            if (x2 - x1 == 0) {
+            if (x2 - x1 != 0) {
                 collectX();
                 printX(x, function);
             }

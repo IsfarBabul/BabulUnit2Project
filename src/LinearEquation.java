@@ -30,7 +30,10 @@ public class LinearEquation {
         int run = x2 - x1;
         int rise = y2 - y1;
         String slopeSign = "";
-        String slopeDisplay = "" + rise / run;
+        String slopeDisplay = "";
+        if (run != 0) {
+            slopeDisplay = "" + rise / run;
+        }
         String interceptSign = "+";
         String interceptDisplay = "";
 
@@ -41,11 +44,12 @@ public class LinearEquation {
             }
             run = Math.abs(run);
             rise = Math.abs(rise);
+            slopeDisplay = "" + rise / run;
         }
 
         if (run != 0) {
             if (yIntercept() < 0) {
-                interceptSign = "-";  //problem --7x? SLOPE DISPLAY
+                interceptSign = "-";
                 interceptDisplay += Math.abs(yIntercept());
             } else if (yIntercept() == 0) {
                 interceptSign = "";
@@ -54,18 +58,18 @@ public class LinearEquation {
             }
         }
 
-        if (slopeDisplay.equals("1")) {  //add a -1
+        if (slopeDisplay.equals("1") || slopeDisplay.equals("-1")) {
             slopeDisplay = "";
         }
 
         if (run == 0) {
             return "x = " + x1;
+        } else if (rise == 0) {
+            return "y = " + yIntercept();
         } else if (rise % run == 0) {
             return "y = " + slopeSign + slopeDisplay + "x " + interceptSign + " " + interceptDisplay;
-        } else if (rise != 0) {
-            return "y = " + slopeSign + rise + "/" + run + "x " + interceptSign + " " + interceptDisplay;
         } else {
-          return "y = " + yIntercept(); //engineer swap
+            return "y = " + slopeSign + rise + "/" + run + "x " + interceptSign + " " + interceptDisplay;
         }
     }
 
