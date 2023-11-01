@@ -53,6 +53,7 @@ public class LinearEquationLogic {
     private void collectX() {
         System.out.print("Enter a value for x: ");
         x = scan.nextDouble();
+        scan.nextLine();
     }
 
     private void printX(double x, LinearEquation function) {

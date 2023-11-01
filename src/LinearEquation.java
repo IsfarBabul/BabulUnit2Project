@@ -37,7 +37,7 @@ public class LinearEquation {
         String interceptSign = "+";
         String interceptDisplay = "";
 
-        if (run < 0 || rise < 0) {
+        if ((run < 0 || rise < 0) && run != 0) {
             slopeSign = "-";
             if ((run < 0 && rise < 0) || slope() == 0) {
                 slopeSign = "";
@@ -74,26 +74,26 @@ public class LinearEquation {
     }
 
     public String coordinateForX(double x) {
-        return "The point on the line is (" + x + ", " + (slope() * x + yIntercept()) + ")";
+        return "The point on the line is (" + roundedToHundredth(x) + ", " + roundedToHundredth((slope() * x + yIntercept())) + ")";
     }
 
     public String lineInfo() {
         String pointsInfo = "The two points are: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ")";
         String equationInfo = "The equation of the line between these points is: " + equation();
         String slopeOutput = "";
-        if (!equationInfo.substring(0, 1).equals("x")) {
-            slopeOutput += slope();
+        if (!equation().substring(0, 1).equals("x")) {
+            slopeOutput += ": " + slope();
         } else {
-            slopeOutput += "undefined";
+            slopeOutput += " undefined";
         }
-        String slopeInfo = "The slope of this line is: " + slopeOutput;
+        String slopeInfo = "The slope of this line is" + slopeOutput;
         String interceptOutput = "";
-        if (!equationInfo.substring(0, 1).equals("x")) {
-            interceptOutput += ": " + yIntercept();
-        } else if (equationInfo.substring(0, 1).equals("x = 0")) {
+        if (equation().substring(0, 5).equals("x = 0")) {
             interceptOutput += " found on infinitely many points";
-        } else {
+        } else if (equation().substring(0, 4).equals("x = ")) {
             interceptOutput += " not found on any point";
+        } else {
+            interceptOutput += ": " + yIntercept();
         }
         String yInterceptInfo = "The y-intercept of this line is" + interceptOutput;
         String distanceInfo = "The distance between these points is: " + distance();
